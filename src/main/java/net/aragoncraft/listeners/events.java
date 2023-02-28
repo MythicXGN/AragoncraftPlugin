@@ -1,6 +1,7 @@
-package net.aragoncraft.listener;
+package net.aragoncraft.listeners;
 
-import net.luckperms.api.LuckPerms;
+import net.aragoncraft.Aragoncraft;
+import net.kyori.adventure.text.Component;
 import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.platform.PlayerAdapter;
 
@@ -15,11 +16,9 @@ import org.bukkit.scoreboard.*;
 
 
 public class events implements Listener {
-    private LuckPerms luckPerms;
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage("Welcome to AragonCraft, " + event.getPlayer().getName() + "!");
+        event.joinMessage(Component.text("Welcome to AragonCraft, " + event.getPlayer().getName() + "!"));
         hubscoreBoard(event.getPlayer());
     }
 
@@ -35,7 +34,7 @@ public class events implements Listener {
         Score score1 = obj.getScore(ChatColor.DARK_AQUA + "Online Players: " + ChatColor.GOLD + Bukkit.getOnlinePlayers().size());
         score1.setScore(2);
 
-        PlayerAdapter<Player> adapter = luckPerms.getPlayerAdapter(Player.class);
+        PlayerAdapter<Player> adapter = Aragoncraft.luckpermsAPI.getPlayerAdapter(Player.class);
         CachedMetaData metaData = adapter.getMetaData(player);
 
         Score score2 = obj.getScore(ChatColor.DARK_AQUA + "Rank: " + "");

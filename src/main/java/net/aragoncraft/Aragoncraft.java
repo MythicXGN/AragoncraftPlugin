@@ -2,33 +2,33 @@ package net.aragoncraft;
 
 import java.util.logging.Logger;
 
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.milkbowl.vault.economy.Economy;
 
-import net.aragoncraft.commands.balancecommand;
-import net.aragoncraft.listener.events;
+import net.aragoncraft.commands.balance;
+import net.aragoncraft.listeners.events;
 
-public class plugin extends JavaPlugin {
-    private static plugin plugin;
-    private static final Logger log = Logger.getLogger("Minecraft");
+public class Aragoncraft extends JavaPlugin {
+    private static final Logger log = Logger.getLogger("ARGONCRAFT");
 
     private static Economy economy = null;
+    public static LuckPerms luckpermsAPI = LuckPermsProvider.get();
 
     @Override
     public void onEnable() {
         if (!setupEconomy() ){
-            System.out.println("[ARGONCRAFT ECON]: Disabled due to no Vault dependency found!");
+            log.info("[ECON]: Disabled due to no Vault dependency found!");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
-        getCommand("balance").setExecutor(new balancecommand());
+        getCommand("balance").setExecutor(new balance());
         Bukkit.getPluginManager().registerEvents(new events(), this);
-        plugin = this;
     }
 
     private boolean setupEconomy() {
@@ -41,7 +41,7 @@ public class plugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info("&6Disabling Aragoncraft");
+        log.info("&6Disabling Aragoncraft");
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
     }
 

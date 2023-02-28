@@ -4,3 +4,8 @@ main: net.aragoncraft.plugin
 api-version: 1.19
 depend: [ vault, luckperms ]
 authors: [ MythicXGN, Jpuf ]
+commands:
+  balance:
+    usage: /balance
+    aliases: bal
+    description: adds to a Players Balance
