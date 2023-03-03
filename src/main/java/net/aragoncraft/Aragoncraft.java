@@ -17,7 +17,7 @@ public class Aragoncraft extends JavaPlugin {
     private static final Logger log = Logger.getLogger("ARGONCRAFT");
 
     private static Economy economy = null;
-    public static LuckPerms luckpermsAPI = LuckPermsProvider.get();
+    public static LuckPerms luckpermsAPI;
 
     @Override
     public void onEnable() {
@@ -26,6 +26,7 @@ public class Aragoncraft extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        luckpermsAPI = LuckPermsProvider.get();
 
         getCommand("balance").setExecutor(new balance());
         Bukkit.getPluginManager().registerEvents(new events(), this);
