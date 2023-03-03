@@ -2,8 +2,12 @@ name: Aragoncraft
 version: '${version}'
 main: net.aragoncraft.plugin
 api-version: 1.19
-depend: [ vault, LuckPerms ]
-authors: [ MythicXGN, Jpuf ]
+depend:
+  - Vault
+  - LuckPerms
+authors:
+  - MythicXGN
+  - Jpuf
 commands:
   balance:
     usage: /balance
